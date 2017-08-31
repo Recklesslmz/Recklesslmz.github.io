@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>vue 仿segmentFault app | Reckless</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Reckless,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript,vue" />
+  
+
+  <meta name="description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue 仿segmentFault app">
+<meta property="og:url" content="http://recklesslmz.com/2017/08/04/vue-仿segmentFault-app/index.html">
+<meta property="og:site_name" content="Reckless">
+<meta property="og:description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&s=100">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf2.png?v=3&s=100">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf3.png?v=3&s=100">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf4.png?v=3&s=100">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf5.png?v=3&s=100">
+<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf6.png?v=3&s=100">
+<meta property="og:updated_time" content="2017-08-04T10:46:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue 仿segmentFault app">
+<meta name="twitter:description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
+<meta name="twitter:image" content="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&s=100">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技术栈"><span class="toc-text">技术栈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目部分截图"><span class="toc-text">项目部分截图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Build-Setup"><span class="toc-text">Build Setup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目地址"><span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#License"><span class="toc-text">License</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-vue-仿segmentFault-app" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">vue 仿segmentFault app</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Reckless</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://recklesslmz.github.io//2017/08/04/vue-仿segmentFault-app/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习</p>
+</blockquote>
+<h1 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h1><ul>
+<li><strong>vue</strong></li>
+<li><strong>vuex</strong></li>
+<li><strong>vue-cli</strong></li>
+<li><strong>vue-router</strong></li>
+<li><strong>axios</strong></li>
+<li><strong>mint-ui</strong></li>
+</ul>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><blockquote>
+<p>登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需download到本地运行。本想着是自己写一个node的服务的，但是写不粗来啊，怎么办嘞，希望下个轮子可以实现，奋斗ing</p>
+</blockquote>
+<h1 id="项目部分截图"><a href="#项目部分截图" class="headerlink" title="项目部分截图"></a>项目部分截图</h1><p><img src="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf2.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf3.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf4.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf5.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf6.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"></p>
+<h1 id="Build-Setup"><a href="#Build-Setup" class="headerlink" title="Build Setup"></a>Build Setup</h1><blockquote>
+<p>安装依赖<br><code>npm insatll</code><br>启动项目<br><code>npm run dev</code><br>打包上传<br><code>npm run build</code></p>
+</blockquote>
+<h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><p><a href="https://github.com/Recklesslmz/vue-sf" target="_blank" rel="external">https://github.com/Recklesslmz/vue-sf</a></p>
+<blockquote>
+<p>如果这个项目对你有帮助的话请给个star鼓励一下，多谢啦</p>
+</blockquote>
+<h1 id="License"><a href="#License" class="headerlink" title="License"></a>License</h1><blockquote>
+<p>MIT</p>
+</blockquote>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持Recklesslmz</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.jpeg" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.jpeg" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="hide pull-left" href="/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/08/04/ElementUI-创建后台管理系统/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'reckless';
+    
+    var disqus_url = 'http://recklesslmz.com/2017/08/04/vue-仿segmentFault-app/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//reckless.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

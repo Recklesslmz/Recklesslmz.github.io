@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>vue 仿豆瓣项目 | Reckless</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Reckless,前端,设计,Hexo主题,前端开发,用户体验,设计,frontend,design,nodejs,JavaScript,vue" />
+  
+
+  <meta name="description" content="前言 一直想做一个系统性的项目，后来看到豆瓣有个开源的api，所以我就模仿豆瓣的电影显示界面做了几个界面， 目前还在持续的开发中，本人是个小白~请各位大大指教呀  用到的技术栈 vue + vue-resource(后续换成axios) + vue-cli + vue-router + mint-ui + sass  用到的接口 用到的是豆瓣的开源接口  正在热映 ：https://api.dou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue 仿豆瓣项目">
+<meta property="og:url" content="http://recklesslmz.com/2017/08/04/vue-仿豆瓣项目/index.html">
+<meta property="og:site_name" content="Reckless">
+<meta property="og:description" content="前言 一直想做一个系统性的项目，后来看到豆瓣有个开源的api，所以我就模仿豆瓣的电影显示界面做了几个界面， 目前还在持续的开发中，本人是个小白~请各位大大指教呀  用到的技术栈 vue + vue-resource(后续换成axios) + vue-cli + vue-router + mint-ui + sass  用到的接口 用到的是豆瓣的开源接口  正在热映 ：https://api.dou">
+<meta property="og:updated_time" content="2017-08-04T10:55:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue 仿豆瓣项目">
+<meta name="twitter:description" content="前言 一直想做一个系统性的项目，后来看到豆瓣有个开源的api，所以我就模仿豆瓣的电影显示界面做了几个界面， 目前还在持续的开发中，本人是个小白~请各位大大指教呀  用到的技术栈 vue + vue-resource(后续换成axios) + vue-cli + vue-router + mint-ui + sass  用到的接口 用到的是豆瓣的开源接口  正在热映 ：https://api.dou">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用到的技术栈"><span class="toc-text">用到的技术栈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用到的接口"><span class="toc-text">用到的接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后续"><span class="toc-text">后续</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#License"><span class="toc-text">License</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-vue-仿豆瓣项目" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">vue 仿豆瓣项目</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Reckless</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://recklesslmz.github.io//2017/08/04/vue-仿豆瓣项目/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>一直想做一个系统性的项目，后来看到豆瓣有个开源的api，所以我就模仿豆瓣的电影显示界面做了几个界面， 目前还在持续的开发中，本人是个小白~请各位大大指教呀</p>
+</blockquote>
+<h1 id="用到的技术栈"><a href="#用到的技术栈" class="headerlink" title="用到的技术栈"></a>用到的技术栈</h1><blockquote>
+<p>vue + vue-resource(后续换成axios) + vue-cli + vue-router + mint-ui + sass</p>
+</blockquote>
+<h1 id="用到的接口"><a href="#用到的接口" class="headerlink" title="用到的接口"></a>用到的接口</h1><blockquote>
+<p>用到的是豆瓣的开源接口</p>
+<ul>
+<li><strong>正在热映</strong> ：<a href="https://api.douban.com/v2/movie/in_theaters" target="_blank" rel="external">https://api.douban.com/v2/movie/in_theaters</a></li>
+<li><strong>即将上映</strong> ：<a href="https://api.douban.com/v2/movie/coming_soon" target="_blank" rel="external">https://api.douban.com/v2/movie/coming_soon</a></li>
+<li><strong>电影详情</strong> ：<a href="https://api.douban.com/v2/movie/subject/:id" target="_blank" rel="external">https://api.douban.com/v2/movie/subject/:id</a></li>
+<li><strong>TOP250</strong> ：<a href="https://api.douban.com/v2/movie/top250" target="_blank" rel="external">https://api.douban.com/v2/movie/top250</a></li>
+</ul>
+</blockquote>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><blockquote>
+<p>项目比较的粗糙都是一些基础的应用~<br>  附上项目地址<a href="https://github.com/Recklesslmz/vue-douban" target="_blank" rel="external">https://github.com/Recklesslmz/vue-douban</a></p>
+</blockquote>
+<h1 id="License"><a href="#License" class="headerlink" title="License"></a>License</h1><blockquote>
+<p>MIT</p>
+</blockquote>
+
+    
+  </div>
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持Recklesslmz</div>
+        <ul class="theme.donation.items.length">
+        
+          <li class="item">
+            <img src="/images/qr-wechat.jpeg" alt="">
+          </li>
+        
+          <li class="item">
+            <img src="/images/qr-alipay.jpeg" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/08/04/ElementUI-创建后台管理系统/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/08/04/解决GitHub没有commit记录的问题/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'reckless';
+    
+    var disqus_url = 'http://recklesslmz.com/2017/08/04/vue-仿豆瓣项目/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//reckless.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+    
+
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
