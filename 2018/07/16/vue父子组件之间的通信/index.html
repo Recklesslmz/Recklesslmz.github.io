@@ -6,26 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://recklesslmz.com">
-  <title>vue 仿segmentFault app | Reckless</title>
+  <title>vue父子组件之间的通信 | Reckless</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
+  <meta name="description" content="前言 其实在vue里面组件之间的通信是一个非常基础的东西，但是在之前的工作当中我用的比较少，所以对于如何处理父子之间的通信一直迷迷糊糊的，今天写这篇文章也是巩固一下自己最近使用的通信，算是一个记录。  父组件如何向子组件传递数据 譬如向子组件中传入一个字符串 Reckless父组件中的代码  1234567&amp;lt;v-child :name=&amp;apos;name&amp;apos;&amp;gt;&amp;lt;/v-c">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue 仿segmentFault app">
-<meta property="og:url" content="http://recklesslmz.com/2017/08/04/vue-仿segmentFault-app/index.html">
+<meta property="og:title" content="vue父子组件之间的通信">
+<meta property="og:url" content="http://recklesslmz.com/2018/07/16/vue父子组件之间的通信/index.html">
 <meta property="og:site_name" content="Reckless">
-<meta property="og:description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&s=100">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf2.png?v=3&s=100">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf3.png?v=3&s=100">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf4.png?v=3&s=100">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf5.png?v=3&s=100">
-<meta property="og:image" content="http://oqjgod7s1.bkt.clouddn.com/sf6.png?v=3&s=100">
-<meta property="og:updated_time" content="2017-09-01T04:41:28.000Z">
+<meta property="og:description" content="前言 其实在vue里面组件之间的通信是一个非常基础的东西，但是在之前的工作当中我用的比较少，所以对于如何处理父子之间的通信一直迷迷糊糊的，今天写这篇文章也是巩固一下自己最近使用的通信，算是一个记录。  父组件如何向子组件传递数据 譬如向子组件中传入一个字符串 Reckless父组件中的代码  1234567&amp;lt;v-child :name=&amp;apos;name&amp;apos;&amp;gt;&amp;lt;/v-c">
+<meta property="og:updated_time" content="2018-07-16T10:00:22.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue 仿segmentFault app">
-<meta name="twitter:description" content="前言 这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习  技术栈 vue vuex vue-cli vue-router axios mint-ui  说明 登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需downloa">
-<meta name="twitter:image" content="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&s=100">
+<meta name="twitter:title" content="vue父子组件之间的通信">
+<meta name="twitter:description" content="前言 其实在vue里面组件之间的通信是一个非常基础的东西，但是在之前的工作当中我用的比较少，所以对于如何处理父子之间的通信一直迷迷糊糊的，今天写这篇文章也是巩固一下自己最近使用的通信，算是一个记录。  父组件如何向子组件传递数据 譬如向子组件中传入一个字符串 Reckless父组件中的代码  1234567&amp;lt;v-child :name=&amp;apos;name&amp;apos;&amp;gt;&amp;lt;/v-c">
   
     <link rel="alternative" href="/atom.xml" title="Reckless" type="application/atom+xml">
   
@@ -183,50 +176,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vue-仿segmentFault-app" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vue父子组件之间的通信" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      vue 仿segmentFault app
+      vue父子组件之间的通信
     </h1>
   
 
         
-        <a href="/2017/08/04/vue-仿segmentFault-app/" class="archive-article-date">
-  	<time datetime="2017-08-04T10:45:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
+        <a href="/2018/07/16/vue父子组件之间的通信/" class="archive-article-date">
+  	<time datetime="2018-07-16T09:21:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>这是一个基于vue-cli构建的前端项目，外观尽可能去还原app的样式，但是因为水平有点渣，好多地方都是得过且过，罪过罪过，这个项目主要还是面向新手吧~希望和大家多学习学习</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>其实在vue里面组件之间的通信是一个非常基础的东西，但是在之前的工作当中我用的比较少，所以对于如何处理父子之间的通信一直迷迷糊糊的，今天写这篇文章也是巩固一下自己最近使用的通信，算是一个记录。</p>
 </blockquote>
-<h1 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h1><ul>
-<li><strong>vue</strong></li>
-<li><strong>vuex</strong></li>
-<li><strong>vue-cli</strong></li>
-<li><strong>vue-router</strong></li>
-<li><strong>axios</strong></li>
-<li><strong>mint-ui</strong></li>
-</ul>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><blockquote>
-<p>登录注册采用的是localStorage存储形式，部分数据采用express的get请求方式，所以项目需download到本地运行。本想着是自己写一个node的服务的，但是写不粗来啊，怎么办嘞，希望下个轮子可以实现，奋斗ing</p>
+<h3 id="父组件如何向子组件传递数据"><a href="#父组件如何向子组件传递数据" class="headerlink" title="父组件如何向子组件传递数据"></a>父组件如何向子组件传递数据</h3><blockquote>
+<p>譬如向子组件中传入一个字符串 <code>Reckless</code><br>父组件中的代码<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;v-child :name=&apos;name&apos;&gt;&lt;/v-child&gt;</div><div class="line">······</div><div class="line">data()&#123;</div><div class="line">    return&#123;</div><div class="line">        name:&apos;Reckless&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>子组件中获取来自父组件的数据</p>
 </blockquote>
-<h1 id="项目部分截图"><a href="#项目部分截图" class="headerlink" title="项目部分截图"></a>项目部分截图</h1><p><img src="http://oqjgod7s1.bkt.clouddn.com/sf1.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf2.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf3.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf4.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf5.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"><br><img src="http://oqjgod7s1.bkt.clouddn.com/sf6.png?v=3&amp;s=100" alt="GitHub" title="GitHub,Social Coding"></p>
-<h1 id="Build-Setup"><a href="#Build-Setup" class="headerlink" title="Build Setup"></a>Build Setup</h1><blockquote>
-<p>安装依赖<br><code>npm insatll</code><br>启动项目<br><code>npm run dev</code><br>打包上传<br><code>npm run build</code></p>
-</blockquote>
-<h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><p><a href="https://github.com/Recklesslmz/vue-sf" target="_blank" rel="external">https://github.com/Recklesslmz/vue-sf</a></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;</div><div class="line">......</div><div class="line">export default&#123;</div><div class="line">    props:&#123;</div><div class="line">        name:String</div><div class="line">    &#125;,</div><div class="line">    data()&#123;</div><div class="line">        return&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>如果这个项目对你有帮助的话请给个star鼓励一下，多谢啦</p>
-</blockquote>
-<h1 id="License"><a href="#License" class="headerlink" title="License"></a>License</h1><blockquote>
-<p>MIT</p>
+<p>父组件获取子组件中的数据<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">子组件中的data数据</div><div class="line">data()&#123;</div><div class="line">    return&#123;</div><div class="line">        name:&apos;Reckless&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">父组件中获取</div><div class="line">&lt;v-child ref=&apos;whateverName&apos;&gt;&lt;/v-child&gt;</div><div class="line">......</div><div class="line">//通过getWhateverName方法获取子组件中的数据</div><div class="line">getWhateverName()&#123;</div><div class="line">    console.log(this.$refs.whateverName.name)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>子组件通过事件监听来与父组件通信<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">子组件中的一个方法</div><div class="line">methods:&#123;</div><div class="line">    getCode()&#123;</div><div class="line">        this.$emit(&apos;getCodeEvent&apos;,&apos;123&apos;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">父组件中的通信方法</div><div class="line">&lt;v-child @getCodeEvent=&apos;getCodeNum&apos;&gt;&lt;/v-child&gt;</div><div class="line">methods:&#123;</div><div class="line">    getCodeNum(code)&#123;</div><div class="line">        console.log(code)//123</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 
       
@@ -328,7 +308,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://recklesslmz.com/2017/08/04/vue-仿segmentFault-app/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://recklesslmz.com/2018/07/16/vue父子组件之间的通信/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -342,15 +322,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/04/ElementUI-创建后台管理系统/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ElementUI 创建后台管理系统
-        
-      </div>
-    </a>
   
+    <a href="/2017/09/22/加班/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">加班...</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
